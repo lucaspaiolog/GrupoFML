@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG no Ponto - Melhorando Praia Grande Juntos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-color);
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://turismo.praiagrande.sp.gov.br/wp-content/uploads/2021/05/praias-2-1500x630.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .problem-card {
+            transition: transform 0.3s;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .report-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            font-style: var(--light-color);
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-map-marked-alt me-2"></i>
+                PG no Ponto
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#como-funciona">Como Funciona</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mapa">Mapa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#estatisticas">Estatísticas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light ms-2" href="#reportar">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção Hero -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Juntos por uma Praia Grande melhor</h1>
+            <p class="lead mb-5">Reporte problemas de infraestrutura e acompanhe a solução em tempo real</p>
+            <a href="#reportar" class="btn btn-primary btn-lg px-4 me-2">
+                <i class="fas fa-plus-circle me-2"></i>Reportar Problema
+            </a>
+            <a href="#mapa" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-map me-2"></i>Ver Mapa
+            </a>
+        </div>
+    </section>
+
+    <!-- Seção Como Funciona -->
+    <section id="como-funciona" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Como Funciona</h2>
+                <p class="lead text-muted">Três passos simples para contribuir</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>1. Encontre</h3>
+                    <p class="text-muted">Identifique um problema de infraestrutura em sua rua, bairro ou cidade.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>2. Reporte</h3>
+                    <p class="text-muted">Tire uma foto e envie pelo site ou app com a localização exata.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>3. Acompanhe</h3>
+                    <p class="text-muted">Receba atualizações e veja quando o problema for resolvido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Problemas Comuns -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Problemas que você pode reportar</h2>
+                <p class="lead text-muted">Ajude a melhorar nossa cidade</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card problem-card h-100">
+                        <img src="https://cdn.diariodolitoral.com.br/img/pc/920/610/dn_arquivo/2024/08/foto-mostra-buraco-no-meio-de-avenida-em-santos.jpeg" class="card-img-top" alt="Buraco na rua">
+                        <div class="card-body">
+                            <h5 class="card-title">Buracos na via</h5>
+                            <p class="card-text">Reporte buracos em ruas e avenidas que precisam de reparo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card problem-card h-100">
+                        <img src="https://i.ytimg.com/vi/yO-VJrXNTQ8/maxresdefault.jpg" class="card-img-top" alt="Iluminação pública">
+                        <div class="card-body">
+                            <h5 class="card-title">Iluminação pública</h5>
+                            <p class="card-text">Lâmpadas queimadas ou postes com problemas de iluminação.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card problem-card h-100">
+                        <img src="https://cdn.bs9.com.br/upload/dn_arquivo/2024/12/01_28.jpg" class="card-img-top" alt="Limpeza urbana">
+                        <div class="card-body">
+                            <h5 class="card-title">Limpeza urbana</h5>
+                            <p class="card-text">Lixo acumulado, terrenos baldios com mato alto ou entulho.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card problem-card h-100">
+                        <img src="https://costanorte.com.br/media/_versions/legacy/28/98/285698_widelg.jpg" class="card-img-top" alt="Sinalização">
+                        <div class="card-body">
+                            <h5 class="card-title">Sinalização</h5>
+                            <p class="card-text">Placas de trânsito danificadas ou falta de sinalização.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Mapa -->
+    <section id="mapa" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Problemas Reportados</h2>
+                <p class="lead text-muted">Veja os problemas reportados em tempo real</p>
+            </div>
+            <div class="map-container bg-white p-3 mb-4">
+                <!-- Mapa será inserido aqui via API (Google Maps ou OpenStreetMap) -->
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    <div class="text-center">
+                        <i class="fas fa-map-marked-alt fa-4x text-muted mb-3"></i>
+                        <h4>Mapa interativo</h4>
+                        <p class="text-muted">Aqui será exibido o mapa com todos os problemas reportados</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge bg-danger me-2" style="width: 20px; height: 20px;"></span>
+                        <span>Problemas não resolvidos</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge bg-success me-2" style="width: 20px; height: 20px;"></span>
+                        <span>Problemas resolvidos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Estatísticas -->
+<!-- Seção Estatísticas (versão para site em lançamento) -->
+<section id="estatisticas" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Nosso Impacto</h2>
+            <p class="lead text-muted">Sua contribuição faz a diferença</p>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-3">
+                <h3 class="display-4 fw-bold text-primary">0</h3>
+                <p class="text-muted">Problemas reportados</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="display-4 fw-bold text-success">0</h3>
+                <p class="text-muted">Problemas resolvidos</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="display-4 fw-bold text-warning">0</h3>
+                <p class="text-muted">Em análise</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="display-4 fw-bold text-danger">0</h3>
+                <p class="text-muted">Recusados</p>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <p class="text-muted">Seja o primeiro a reportar um problema!</p>
+            <a href="#reportar" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-2"></i>Reportar Agora
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Seção Reportar -->
+    <section id="reportar" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-body p-5">
+                            <h2 class="card-title text-center mb-4">Reportar Problema</h2>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="problemType" class="form-label">Tipo de Problema</label>
+                                    <select class="form-select" id="problemType">
+                                        <option selected>Selecione...</option>
+                                        <option>Buraco na via</option>
+                                        <option>Iluminação pública</option>
+                                        <option>Limpeza urbana</option>
+                                        <option>Sinalização</option>
+                                        <option>Esgoto entupido</option>
+                                        <option>Outro</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="problemLocation" class="form-label">Localização</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="problemLocation" placeholder="Digite o endereço ou arraste o marcador no mapa">
+                                        <button class="btn btn-outline-secondary" type="button" id="locationButton">
+                                            <i class="fas fa-map-marker-alt"></i> Usar minha localização
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="problemDescription" class="form-label">Descrição</label>
+                                    <textarea class="form-control" id="problemDescription" rows="3" placeholder="Descreva o problema com detalhes"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="problemPhoto" class="form-label">Foto do Problema</label>
+                                    <input class="form-control" type="file" id="problemPhoto" accept="image/*">
+                                    <div class="form-text">Tire uma foto clara do problema para ajudar na identificação.</div>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>Enviar Reporte
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="sobre" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-4">Sobre o PG no Ponto</h2>
+                    <p class="lead">Uma plataforma colaborativa para melhorar a infraestrutura de Praia Grande.</p>
+                    <p>O PG no Ponto conecta cidadãos e poder público para identificar e resolver problemas de infraestrutura urbana de forma rápida e transparente.</p>
+                    <p>Nosso objetivo é tornar Praia Grande uma cidade mais bem cuidada através da participação ativa da comunidade.</p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="btn btn-outline-primary me-2">
+                            <i class="fab fa-facebook-f me-1"></i> Facebook
+                        </a>
+                        <a href="#" class="btn btn-outline-info me-2">
+                            <i class="fab fa-twitter me-1"></i> Twitter
+                        </a>
+                        <a href="#" class="btn btn-outline-danger">
+                            <i class="fab fa-instagram me-1"></i> Instagram
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://www.praiagrande.sp.gov.br/arquivos/foto/58868.jpg" class="img-fluid rounded shadow" alt="Cidade">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">
+                        <i class="fas fa-map-marked-alt me-2"></i>PG no Ponto
+                    </h5>
+                    <p class="text-white">Juntos por uma Praia Grande melhor.</p>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">Início</a></li>
+                        <li class="mb-2"><a href="#como-funciona" class="text-white">Como Funciona</a></li>
+                        <li class="mb-2"><a href="#mapa" class="text-white">Mapa</a></li>
+                        <li class="mb-2"><a href="#estatisticas" class="text-white">Estatísticas</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Contato</h5>
+                    <ul class="list-unstyled text-white">
+                        <li class="mb-2"><i class="fas fa-envelope me-2" style="color: white;"></i> contato@pgnoponto.com.br</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"style="color: white;"></i> (13) 1234-5678</li>
+                        <li><i class="fas fa-map-marker-alt me-2"style="color: white;"></i> Praia Grande, SP</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-white mb-4">Baixe o App</h5>
+                    <div class="d-flex flex-column">
+                        <a href="#" class="btn btn-dark mb-2">
+                            <i class="fab fa-google-play me-2"></i> Google Play
+                        </a>
+                        <a href="#" class="btn btn-dark">
+                            <i class="fab fa-apple me-2"></i> App Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-white mb-0" style="color: white;">&copy; 2025 PG no Ponto. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white me-3">Termos de Uso</a>
+                    <a href="#" class="text-white">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante de Reporte -->
+    <a href="#reportar" class="btn btn-primary report-btn d-flex align-items-center justify-content-center">
+        <i class="fas fa-plus"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
